@@ -24,7 +24,6 @@ onready var swordHitbox = $HitboxPivot/SwordHitBox
 
 func _ready():
 	#wait for it to get ready
-	print(stats.health)
 	stats.connect("no_health",self,"queue_free")
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector

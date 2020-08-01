@@ -43,14 +43,14 @@ radius = 4.0
 radius = 7.0
 height = 3.85677
 
+[sub_resource type="CircleShape2D" id=11]
+
 [sub_resource type="CircleShape2D" id=9]
 radius = 52.7278
 
 [sub_resource type="CapsuleShape2D" id=10]
 radius = 4.0
 height = 0.0
-
-[sub_resource type="CircleShape2D" id=11]
 
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 2
@@ -85,12 +85,21 @@ disabled = true
 max_health = 2
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
-visible = false
 scale = Vector2( 0.797109, 1.00802 )
 
-[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetectionZone"]
+position = Vector2( 0, -13.8886 )
+scale = Vector2( 1.25453, 0.992044 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="1"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.67451 )
 shape = SubResource( 9 )
+
+[node name="deleteme" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483650
 
 [node name="HitBox" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -101,14 +110,6 @@ collision_mask = 2147483652
 position = Vector2( 0, -14 )
 shape = SubResource( 10 )
 disabled = true
-
-[node name="deleteme" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2147483650
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="deleteme"]
-position = Vector2( 0, -14 )
-shape = SubResource( 11 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Area2D_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 

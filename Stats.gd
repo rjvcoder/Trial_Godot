@@ -7,8 +7,6 @@ signal no_health #check on the child node
 
 func set_health(value):
 	health = value
-	print(value)
 	if health <=0:
-		print("dead")
 		emit_signal("no_health")
 	
