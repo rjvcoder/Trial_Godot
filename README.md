@@ -1,9 +1,6 @@
 # Trial_Godot
 Just a simple Godot RPG Project following HeartBeast's Tutorial
 
-![Project Image](project-image-url)
-
-# Template from https://raw.githubusercontent.com/jamesqquick/read-me-template/master/README.md
 ---
 
 ### Table of Contents
@@ -12,7 +9,6 @@ You're sections headers will be used to reference location of destination.
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [References](#references)
-- [License](#license)
 - [Author Info](#author-info)
 
 ---
@@ -34,31 +30,16 @@ Creating ReadMe's for your Github repository can be tedious.  I hope this templa
 ## How To Use
 
 #### Installation
-
-
-
-#### API Reference
-
-```html
-    <p>dummy code</p>
-```
-[Back To The Top](#read-me-template)
-
+- Open with the project in godot editor.
 ---
 
 ## References
-[Back To The Top](#read-me-template)
-
----
-
-## License
-
-
-
+-HeartBeast's Action RPG Series (Youtube)
 [Back To The Top](#read-me-template)
 
 ---
 
 ## Author Info
+- Soon
 
 [Back To The Top](#read-me-template)
