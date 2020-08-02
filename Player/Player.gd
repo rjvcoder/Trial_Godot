@@ -21,6 +21,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback") #get access to animation tree playback animation
 onready var swordHitbox = $HitboxPivot/SwordHitBox
+onready var hurtbox = $HurtBox
 
 func _ready():
 	#wait for it to get ready
@@ -94,6 +95,6 @@ func attack_animation_finished():
 
 
 func _on_HurtBox_area_entered(area):
-	pass
-	#print("ouch")
-	#stats.health-=1
+	stats.health-=1
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()

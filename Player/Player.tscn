@@ -604,7 +604,7 @@ graph_offset = Vector2( 0, -89.5076 )
 
 [sub_resource type="CapsuleShape2D" id=47]
 radius = 4.0
-height = 2.0
+height = 6.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -653,19 +653,18 @@ parameters/Run/blend_position = Vector2( 0, 1 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( 0, -4 )
-rotation = 3.14159
+rotation = 1.5708
 __meta__ = {
 "_gizmo_extents_": 8.0
 }
 
 [node name="SwordHitBox" parent="HitboxPivot" instance=ExtResource( 3 )]
 position = Vector2( 15, 0 )
-collision_layer = 0
-collision_mask = 2147483656
+collision_mask = 8
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitBox" index="0"]
-position = Vector2( 0, -1.43048e-06 )
+position = Vector2( 1, -5.79357e-05 )
 shape = SubResource( 46 )
 disabled = true
 

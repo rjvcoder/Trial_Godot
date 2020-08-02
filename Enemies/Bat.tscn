@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemies/Bat.png" type="Texture" id=1]
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Stats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://HitBoxes and HurtBoxes/HitBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://HitBoxes and HurtBoxes/SoftCollision.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/WanderController.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -43,17 +45,19 @@ radius = 4.0
 radius = 7.0
 height = 3.85677
 
-[sub_resource type="CircleShape2D" id=11]
-
-[sub_resource type="CircleShape2D" id=9]
-radius = 52.7278
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 101.617
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=10]
 radius = 4.0
 height = 0.0
 
+[sub_resource type="CircleShape2D" id=11]
+radius = 3.0
+
 [node name="Bat" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 16
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -68,18 +72,14 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
-disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
-visible = false
 scale = Vector2( 0.797109, 1.00802 )
 collision_layer = 8
-collision_mask = 2147483648
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 1.19209e-07, -12.8966 )
 shape = SubResource( 8 )
-disabled = true
 
 [node name="Stats" parent="." instance=ExtResource( 5 )]
 max_health = 2
@@ -87,29 +87,24 @@ max_health = 2
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
 scale = Vector2( 0.797109, 1.00802 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetectionZone"]
-position = Vector2( 0, -13.8886 )
-scale = Vector2( 1.25453, 0.992044 )
-shape = SubResource( 11 )
-
-[node name="CollisionShape2D" parent="PlayerDetectionZone" index="1"]
-visible = false
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 self_modulate = Color( 1, 1, 1, 0.67451 )
 shape = SubResource( 9 )
 
-[node name="deleteme" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2147483650
-
 [node name="HitBox" parent="." instance=ExtResource( 7 )]
-visible = false
-collision_layer = 2147483656
-collision_mask = 2147483652
+collision_layer = 8
+collision_mask = 4
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( 0, -14 )
 shape = SubResource( 10 )
-disabled = true
+
+[node name="SoftCollision" parent="." instance=ExtResource( 8 )]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 11 )
+
+[node name="WanderController" parent="." instance=ExtResource( 9 )]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Area2D_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
@@ -118,3 +113,5 @@ disabled = true
 [editable path="PlayerDetectionZone"]
 
 [editable path="HitBox"]
+
+[editable path="SoftCollision"]
